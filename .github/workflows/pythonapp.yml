@@ -1,4 +1,4 @@
-name: Python application
+name: Advent of Code 2019
 
 on: [push]
 
@@ -28,3 +28,22 @@ jobs:
       run: |
         pip install pytest
         pytest
+
+  run:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Build and install
+      run: |
+        python setup.py build
+        python setup.py dist
+    - name: Run day1
+      run: |
+        aoc2019 day1 data/day1.txt
