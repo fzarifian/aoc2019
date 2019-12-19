@@ -43,7 +43,7 @@ jobs:
     - name: Build and install
       run: |
         python setup.py build
-        python setup.py dist
+        python setup.py install
     - name: Run day1
       run: |
         aoc2019 day1 data/day1.txt
