@@ -1,14 +1,16 @@
-from setuptools import setup
+from setuptools import setup, find_packages
+
 
 setup(
     name='aoc2019',
     version='0.1',
-    py_modules=['aoc2019'],
+    packages=find_packages(),
+    include_package_data=True,
     install_requires=[
         'Click',
     ],
     entry_points='''
         [console_scripts]
-        aoc2019=aoc2019:cli
+        yourscript=aoc2019.click.cli:cli
     ''',
 )

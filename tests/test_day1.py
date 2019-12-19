@@ -1,4 +1,4 @@
-from aoc2019 import Spaceship, SpaceshipModule, round_down
+from aoc2019.models import Spaceship, SpaceshipModule, round_down
 
 
 def get_fuel_module_requirement(answer):
