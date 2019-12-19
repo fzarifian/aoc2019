@@ -1,6 +1,11 @@
 import click
+import math
 
 DEBUG = False
+
+def round_down(n, decimals=0):
+    multiplier = 10 ** decimals
+    return math.floor(n * multiplier) / multiplier
 
 class Fuel:
     def __init__(self):
@@ -13,7 +18,7 @@ class Fuel:
         self._computed_volume(offset=volume)
 
     def _computed_volume(self, offset=0):
-        result = int(round( offset / 3,  0 ) - 2 )
+        result = int(round_down( offset / 3,  0 ) - 2 )
         if result > 0:
             self.total_volume = self.total_volume + result
             self._computed_volume(result)
@@ -43,7 +48,7 @@ class SpaceshipModule:
         self.weight = weight
         self.fuel = Fuel()
 
-        self.fuel.add(volume=int( round( self.weight / 3,  0 ) - 2 ))
+        self.fuel.add(volume=int( round_down( self.weight / 3,  0 ) - 2 ))
 
 
     def __str__(self):
