@@ -1,10 +1,12 @@
-from aoc2019 import Fuel, Spaceship, SpaceshipModule, round_down
+from aoc2019 import Spaceship, SpaceshipModule, round_down
+
 
 def get_fuel_module_requirement(answer):
     spaceship = Spaceship()
     module = SpaceshipModule(weight=answer)
     spaceship.add_module(module=module)
     return spaceship
+
 
 def test_day1_round_down():
     """
@@ -13,12 +15,14 @@ def test_day1_round_down():
     result = round_down(2.5)
     assert result == 2
 
+
 def test_day1_step1_test1():
     """
     For a mass of 12, divide by 3 and round down to get 4, then subtract 2 to get 2.
     """
     spaceship = get_fuel_module_requirement(12)
     assert spaceship.fuel_modules_requirements == 2
+
 
 def test_day1_step1_test2():
     """
@@ -27,6 +31,7 @@ def test_day1_step1_test2():
     spaceship = get_fuel_module_requirement(14)
     assert spaceship.fuel_modules_requirements == 2
 
+
 def test_day1_step1_test3():
     """
     For a mass of 1969, the fuel required is 654.
@@ -34,12 +39,14 @@ def test_day1_step1_test3():
     spaceship = get_fuel_module_requirement(1969)
     assert spaceship.fuel_modules_requirements == 654
 
+
 def test_day1_step1_test4():
     """
     For a mass of 100756, the fuel required is 33583.
     """
     spaceship = get_fuel_module_requirement(100756)
     assert spaceship.fuel_modules_requirements == 33583
+
 
 def test_day1_step2_test1():
     """
@@ -49,6 +56,7 @@ def test_day1_step2_test1():
     """
     spaceship = get_fuel_module_requirement(14)
     assert spaceship.fuel_requirements == 2
+
 
 def test_day1_step2_test2():
     """

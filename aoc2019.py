@@ -3,9 +3,11 @@ import math
 
 DEBUG = False
 
+
 def round_down(n, decimals=0):
     multiplier = 10 ** decimals
     return math.floor(n * multiplier) / multiplier
+
 
 class Fuel:
     def __init__(self):
@@ -18,7 +20,7 @@ class Fuel:
         self._computed_volume(offset=volume)
 
     def _computed_volume(self, offset=0):
-        result = int(round_down( offset / 3,  0 ) - 2 )
+        result = int(round_down(offset / 3,  0) - 2)
         if result > 0:
             self.total_volume = self.total_volume + result
             self._computed_volume(result)
@@ -32,7 +34,7 @@ class Spaceship:
 
     def add_module(self, module):
         self.modules.append(module)
-        self.fuel_modules_requirements  = self.fuel_modules_requirements + module.fuel.required_volume
+        self.fuel_modules_requirements = self.fuel_modules_requirements + module.fuel.required_volume
         self.fuel_requirements = self.fuel_requirements + module.fuel.total_volume
 
     def __str__(self):
@@ -42,21 +44,22 @@ class Spaceship:
     fuel requirements : %d
         """ % (len(self.modules), self.fuel_modules_requirements, self.fuel_requirements)
 
+
 class SpaceshipModule:
     def __init__(self, name="Module", weight=0):
         self.name = name
         self.weight = weight
         self.fuel = Fuel()
 
-        self.fuel.add(volume=int( round_down( self.weight / 3,  0 ) - 2 ))
-
+        self.fuel.add(volume=int(round_down(self.weight / 3,  0) - 2))
 
     def __str__(self):
         return """Spaceship Module:
     weight : %d
     fuel required volume : %d
     fuel total volume : %d
-        """ % (self.weight, self.fuel.required_volume, self.fuel.total_volume )
+        """ % (self.weight, self.fuel.required_volume, self.fuel.total_volume)
+
 
 @click.group()
 @click.option('--debug/--no-debug', default=False)
@@ -64,6 +67,7 @@ class SpaceshipModule:
 def cli(ctx, debug):
     ctx.ensure_object(dict)
     ctx.obj['DEBUG'] = debug
+
 
 @cli.command()
 @click.argument('file', type=click.File('r'))
@@ -82,6 +86,7 @@ def day1(ctx, file):
 
     click.echo("The step1 result is : %d" % (spaceship.fuel_modules_requirements, ))
     click.echo("The step2 result is : %d" % (spaceship.fuel_requirements, ))
+
 
 if __name__ == '__main__':
     cli(obj={})
