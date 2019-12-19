@@ -11,6 +11,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        yourscript=aoc2019.click.cli:aoc2019
+        aoc2019=aoc2019.click:cli
     ''',
 )
