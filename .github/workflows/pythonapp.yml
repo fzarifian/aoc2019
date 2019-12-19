@@ -27,7 +27,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
-        pytest --cov=aoc2019.py tests/
+        pytest --cov=aoc2019 tests/
   run:
     needs: build
 
