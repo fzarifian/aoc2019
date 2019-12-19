@@ -1,6 +1,7 @@
 import click
 from .models import Spaceship, SpaceshipModule
 
+
 @click.group()
 @click.option('--debug/--no-debug', default=False)
 @click.pass_context

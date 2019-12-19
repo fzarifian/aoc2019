@@ -1,4 +1,3 @@
-import click
 import math
 
 
@@ -57,4 +56,3 @@ class SpaceshipModule:
     fuel required volume : %d
     fuel total volume : %d
         """ % (self.weight, self.fuel.required_volume, self.fuel.total_volume)
-
