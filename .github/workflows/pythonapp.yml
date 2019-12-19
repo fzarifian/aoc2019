@@ -46,3 +46,6 @@ jobs:
     - name: Run day1
       run: |
         aoc2019 day1 data/day1.txt
+    - name: Run day2
+      run: |
+        aoc2019 day2 data/day2.txt
