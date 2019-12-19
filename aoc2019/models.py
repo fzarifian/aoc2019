@@ -56,3 +56,56 @@ class SpaceshipModule:
     fuel required volume : %d
     fuel total volume : %d
         """ % (self.weight, self.fuel.required_volume, self.fuel.total_volume)
+
+
+class GravityAssist:
+    def __init__(self, input):
+        self.input = input
+        self.data = []
+        self.output = str()
+        self.verb = 0
+        self.noun = 0
+        self.reset()
+
+    def reset(self):
+        self.data = self.input.split(',')
+
+    def set_noun(self, value):
+        self.data[1] = str(value)
+        self.noun = value
+
+    def set_verb(self, value):
+        self.data[2] = str(value)
+        self.verb = value
+
+    def add(self, offset):
+        (a, b, pos) = self._get_step_values(offset)
+        self.data[pos] = str(a + b)
+
+    def mult(self, offset):
+        (a, b, pos) = self._get_step_values(offset)
+        self.data[pos] = str(a * b)
+
+    def _get_step_values(self, offset):
+        a = int(self.data[int(self.data[offset + 1])])
+        b = int(self.data[int(self.data[offset + 2])])
+        pos = int(self.data[offset + 3])
+
+        return (a, b, pos)
+
+    def compute(self):
+        for offset in range(0, len(self.data), 4):
+            action = int(self.data[offset])
+
+            if action == 1:
+                self.add(offset)
+            elif action == 2:
+                self.mult(offset)
+            elif action == 99:
+                self.output = ','.join(self.data)
+                break
+
+        return self.output
+
+    def output_value(self):
+        return int(self.data[0])
